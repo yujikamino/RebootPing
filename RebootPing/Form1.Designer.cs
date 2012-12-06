@@ -56,6 +56,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.StartButton = new System.Windows.Forms.Button();
             this.logFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.relayOnButton = new System.Windows.Forms.Button();
+            this.relayOffButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -311,11 +313,33 @@
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
+            // relayOnButton
+            // 
+            this.relayOnButton.Location = new System.Drawing.Point(313, 122);
+            this.relayOnButton.Name = "relayOnButton";
+            this.relayOnButton.Size = new System.Drawing.Size(75, 23);
+            this.relayOnButton.TabIndex = 26;
+            this.relayOnButton.Text = "ON";
+            this.relayOnButton.UseVisualStyleBackColor = true;
+            this.relayOnButton.Click += new System.EventHandler(this.relayOnButton_Click);
+            // 
+            // relayOffButton
+            // 
+            this.relayOffButton.Location = new System.Drawing.Point(313, 151);
+            this.relayOffButton.Name = "relayOffButton";
+            this.relayOffButton.Size = new System.Drawing.Size(75, 23);
+            this.relayOffButton.TabIndex = 27;
+            this.relayOffButton.Text = "OFF";
+            this.relayOffButton.UseVisualStyleBackColor = true;
+            this.relayOffButton.Click += new System.EventHandler(this.relayOffButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 425);
+            this.Controls.Add(this.relayOffButton);
+            this.Controls.Add(this.relayOnButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -385,6 +409,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.SaveFileDialog logFileDialog;
+        private System.Windows.Forms.Button relayOnButton;
+        private System.Windows.Forms.Button relayOffButton;
     }
 }
 

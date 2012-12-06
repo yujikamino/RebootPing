@@ -56,7 +56,7 @@ namespace RebootPing
             }
         }
 
-        //デバイスの初期化 リレーをOFFにします。
+        //リレーをOFFにします。
         public bool powerOff()
         {
             if (m_ftdiDevice.IsOpen)
@@ -117,6 +117,18 @@ namespace RebootPing
             {
                 logStream.Close();
             }
+        }
+
+        //relay1,2ともに動作させるための初期値
+        internal void ftdiRelayInit(System.Windows.Forms.ComboBox ftdiDeviceList)
+        {
+            byte mask = 0;
+
+            mask |= 0x14;
+
+            m_ftdiDevice.OpenByIndex((uint)m_ftdiDeviceMap[ftdiDeviceList.SelectedIndex]);
+            m_ftdiDevice.SetBitMode(mask, FTDI.FT_BIT_MODES.FT_BIT_MODE_ASYNC_BITBANG);
+
         }
     }
 }
