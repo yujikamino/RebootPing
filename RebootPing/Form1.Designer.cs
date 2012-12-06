@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.ftdiDeviceList = new System.Windows.Forms.ComboBox();
-            this.StartButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -55,6 +54,8 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
+            this.StartButton = new System.Windows.Forms.Button();
+            this.logFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -73,15 +74,6 @@
             this.ftdiDeviceList.Name = "ftdiDeviceList";
             this.ftdiDeviceList.Size = new System.Drawing.Size(376, 20);
             this.ftdiDeviceList.TabIndex = 0;
-            // 
-            // StartButton
-            // 
-            this.StartButton.Location = new System.Drawing.Point(313, 44);
-            this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(75, 56);
-            this.StartButton.TabIndex = 1;
-            this.StartButton.Text = "開始";
-            this.StartButton.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -309,6 +301,16 @@
             this.label7.TabIndex = 25;
             this.label7.Text = "ms";
             // 
+            // StartButton
+            // 
+            this.StartButton.Location = new System.Drawing.Point(313, 44);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(75, 56);
+            this.StartButton.TabIndex = 1;
+            this.StartButton.Text = "開始";
+            this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -336,6 +338,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "RebootPing";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
@@ -355,7 +358,6 @@
         #endregion
 
         private System.Windows.Forms.ComboBox ftdiDeviceList;
-        private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
@@ -381,6 +383,8 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button StartButton;
+        private System.Windows.Forms.SaveFileDialog logFileDialog;
     }
 }
 

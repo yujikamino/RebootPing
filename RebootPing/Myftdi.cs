@@ -4,16 +4,23 @@ using System.Linq;
 using System.Text;
 using FTD2XX_NET;
 
+
 namespace RebootPing
 {
     class Myftdi
     {
+        public UInt32 m_ftdiDeviceCount;
+        public FTDI m_ftdiDevice = new FTDI();
+        public FTDI.FT_DEVICE_INFO_NODE[] m_ftdiDeviceList = null;
+        public int[] m_ftdiDeviceMap = null;
 
-        private FTDI m_ftdiDevice = new FTDI();
-        private FTDI.FT_DEVICE_INFO_NODE[] m_ftdiDeviceList = null;
+        private System.IO.Stream logStream = null;
+        private System.IO.StreamWriter logWriter = null;
 
 
-        public void ftdiDeviceEnumulate()
+        //ftdiデバイスを読み込んで、コンボボックスに挿入
+        //初期読み込みに利用
+        internal void ftdiDeviceEnumulate(System.Windows.Forms.ComboBox ftdiDeviceList)
         {
             ftdiDeviceList.Items.Clear();
 
@@ -47,10 +54,69 @@ namespace RebootPing
                 }
                 ftdiDeviceList.SelectedIndex = 0;
             }
-
         }
 
+        //デバイスの初期化 リレーをOFFにします。
+        public bool powerOff()
+        {
+            if (m_ftdiDevice.IsOpen)
+            {
+                byte[] bits = { 0 };
+                uint len = 0;
+                m_ftdiDevice.Write(bits, 1, ref len);
+                log("Power OFF");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-
+        //リレーをONにします。
+        public bool powerOn()
+        {
+            if (m_ftdiDevice.IsOpen)
+            {
+                byte[] bits = { 0 };
+                bits[0] |= 0x04;
+                bits[0] |= 0x10;
+                uint len = 0;
+                m_ftdiDevice.Write(bits, 1, ref len);
+                log("Power ON");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        //string型の前に、現在の時間を表示させます
+        public void log(string msg)
+        {
+            if (logWriter != null)
+            {
+                try
+                {
+                    logWriter.Write(DateTime.Now.ToString() + " : " + msg + "\r\n");
+                    logWriter.Flush();
+                }
+                catch
+                {
+                }
+            }
+        }
+        //logを閉じます
+        public void logClose()
+        {
+            if (logWriter != null)
+            {
+                logWriter.Close();
+            }
+            if (logStream != null)
+            {
+                logStream.Close();
+            }
+        }
     }
 }
